@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import initialFriends from "./initialFriends.js";
+import FriendsList from "./components/FriendsList/FriendsList.jsx";
+import FormAddFriends from "./components/FormAddFriends/FormAddFriends.jsx";
+import Button from "./components/Button/Button.jsx";
+import FormSplitBill from "./components/FormSplitBill/FormSplitBill.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList friends={initialFriends} />
+        <FormAddFriends />
+        <Button>Add Friends</Button>
+      </div>
+      <FormSplitBill />
     </div>
   );
 }
