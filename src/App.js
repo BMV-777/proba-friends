@@ -1,27 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 import initialFriends from "./initialFriends.js";
 
-import FriendsList from "./components/FriendsList/FriendsList";
-import FormAddFriends from "./components/FormAddFriends/FormAddFriends.jsx";
-import FormSplitBill from "./components/FormSplitBill/FormSplitBill.jsx";
-
-console.log(initialFriends);
-
 function App() {
-  const [friends, setFriends] = useState(initialFriends);
-
-  function handelAddFriend(friend) {
-    setFriends((friends) => [...friends, friend]);
-  }
-
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList friends={friends} />
-        <FormAddFriends onAddFriend={handelAddFriend} />
+        <h1>hello</h1>
       </div>
-      <FormSplitBill />
     </div>
   );
 }
