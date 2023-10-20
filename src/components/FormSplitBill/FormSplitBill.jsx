@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Button from "../Button/Button";
 
-const FormSplitBill = () => {
+const FormSplitBill = ({ selectedFriend, onSplitBill }) => {
   const [bill, setBill] = useState("");
   const [payUser, setPayUser] = useState("");
   const isPay = bill ? bill - payUser : "";
@@ -11,12 +12,12 @@ const FormSplitBill = () => {
 
     if (!bill || !payUser) return;
 
-    // onSelection(whatPay === "user" ? isPay : -payUser);
+    onSplitBill(whatPay === "user" ? isPay : -payUser);
   }
 
   return (
     <form className="form-split-bill" onSubmit={handelSubmit}>
-      <h2>Split a bill with onSelection </h2>
+      <h2>Split a bill with onSelection {selectedFriend.name} </h2>
 
       <label>💰 Bill value</label>
       <input
@@ -36,14 +37,16 @@ const FormSplitBill = () => {
         }
       />
 
-      <label>👭 Clark's expense</label>
+      <label>👭 {selectedFriend.name}s expense</label>
       <input type="text" disabled value={isPay} />
 
       <label>🤑 Who is paying the bill</label>
       <select value={whatPay} onChange={(e) => setWhatPay(e.target.value)}>
         <option value="user">You</option>
-        <option value="friend">X</option>
+        <option value="friend">{selectedFriend.name}</option>
       </select>
+
+      <Button>Split bill</Button>
     </form>
   );
 };

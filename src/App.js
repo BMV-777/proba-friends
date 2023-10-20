@@ -22,20 +22,44 @@ function App() {
   }
 
   function handelSelection(friend) {
-    setSelectedFriend(friend);
+    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
+    setIsOpen(false);
+  }
+
+  function handelSplitBill(value) {
+    setFriends((friends) =>
+      friends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? {
+              ...friend,
+              balance: friend.balance + value,
+            }
+          : friend
+      )
+    );
+    setSelectedFriend(null);
   }
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList friends={friends} onSelection={handelSelection} />
+        <FriendsList
+          friends={friends}
+          onSelection={handelSelection}
+          selectedFriend={selectedFriend}
+        />
 
         {isOpen && <FormAddFriends onAddFriend={handelAddFriend} />}
 
         <Button onClick={handelIsOpen}>
-          {isOpen ? "Closed" : "Add friend"}
+          {isOpen ? "Close" : "Add friend"}
         </Button>
       </div>
-      {selectedFriend && <FormSplitBill />}
+      {selectedFriend && (
+        <FormSplitBill
+          selectedFriend={selectedFriend}
+          onSplitBill={handelSplitBill}
+        />
+      )}
     </div>
   );
 }
