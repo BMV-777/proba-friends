@@ -1,17 +1,15 @@
 import React from "react";
 import Button from "../Button/Button";
 
-const Friends = ({ friend, onSelection, selectedFriend }) => {
-  const isSelection = selectedFriend?.id === friend.id;
-
+const Friends = ({ friend }) => {
   return (
-    <li className={isSelection ? "select" : ""}>
+    <li>
       <img src={friend.image} alt={friend.name} />
       {friend.name}
 
       {friend.balance < 0 && (
         <p className="red">
-          Yo owen {friend.name} {Math.abs(friend.balance)}€
+          Yo owe {friend.name} {Math.abs(friend.balance)}€
         </p>
       )}
 
@@ -21,11 +19,9 @@ const Friends = ({ friend, onSelection, selectedFriend }) => {
         </p>
       )}
 
-      {friend.balance === 0 && <p>You and {friend.name} are even</p>}
+      {friend.balance === 0 && <p>You and {friend.name} are even </p>}
 
-      <Button onClick={() => onSelection(friend)}>
-        {isSelection ? "Close" : "Select"}
-      </Button>
+      <Button>Select</Button>
     </li>
   );
 };
